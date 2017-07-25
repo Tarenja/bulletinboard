@@ -1,0 +1,41 @@
+Bulletin Board Application
+Create a website that allows people to post messages to a page. A message consists of a title and a body.
+
+//For this website I am going to need a server application using Express. I will need templates for both of the pages. The packages I will need will be Express, Pug, Path, PG, Body-Parser. I need to create a table with the required information so it can be read and written to accordingly. 
+
+The site should have two pages:
+- The first page shows people a form where they can add a new message.
+
+//On this page I will need a form, which creates a post request to the server. On the server side it should write into the database what the user has entered into the form. Then a confirmation message or something needs to show up to let the user know they have submitted a message. I will need to create a form with an entry field for the message title, and a bigger one to type the body of the message itself. Think about character limits. On this page there should also be a button to 'all messages' on the other page. To keep consistency let's put it at the top in a nav bar.
+
+- The second page shows each of the messages people have posted.
+
+//On this page I will need to send a get request to the server, which will read the database of messages, and send them to the client which can then render them on the page. Each one needs to be individual, with its own title and body together, and as the messages get added the page gets longer. This page should also have a button for the homepage/form. Probably should put this at the top somewhere so the messages can appear under it. Perhaps I can try also putting the messages next to each other  to some extent so it's not just a huge long list and looks more like an actual bulletin board.
+
+Make sure there's a way to navigate the site so users can access each page.
+
+Messages must be stored in a postgres database. Create a "messages" table with three columns:
+column name / column data type:
+- id: serial primary key
+- title: text
+- body: text
+
+Additional Grading Criteria
+
+As before, your package.json must include the correct dependencies.
+
+Additionally, you must configure postgres as follows:
+Name your database "bulletinboard".
+Your postgres username must be read from an environment variable named "POSTGRES_USER".
+Your postgres password (if present) must be read from an environment variable named "POSTGRES_PASSWORD"
+
+Thus, your connection string in the code will appear as follows:
+
+var connectionString = 'postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD + '@localhost/bulletinboard';
+set an environment variable by opening either ~/.bash_profile for OSX or ~/.bashrc for Linux and adding the line:
+
+export POSTGRES_USER=jon
+export POSTGRES_PASSWORD=mypassword
+After that, restart your terminal to propagate these changes to your shell.
+
+This will allow Noer to grade your assignments without having to go into your code and change your connection string to his configuration.

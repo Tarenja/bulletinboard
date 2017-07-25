@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    link(href='./main.css', rel='stylesheet')
+    title Bulletin Board
+  body
+    ul
+      each message in messages
+        br
+        li= message.title
+        br
+        li= message.body
+        br
+    br
+    a(href='/') Home
