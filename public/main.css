@@ -1,0 +1,67 @@
+body {
+  font-family: 'Zilla Slab', serif;
+}
+
+/*styling for the homepage*/
+#index a {
+  color: black;
+  text-decoration: none;
+  border: 4px solid black;
+  padding: 1%;
+}
+
+body#index {
+  text-align: center;
+  font-size: 30px;
+  background-image: url('http://img08.deviantart.net/1b23/i/2011/309/3/1/cork_board_texture_13_by_carlbert-d4f8ekd.jpg');
+}
+
+form {
+  margin-top: 15%;
+}
+
+#form {
+  background-color: rgb(249, 244, 117);
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-bottom: 1%;
+  color: black;
+}
+
+.btn {
+  background: none;
+  font-family: 'Zilla Slab', serif;
+  border: 1px dashed black;
+  font-size: 20px;
+  color: black;
+  padding: 0.5%;
+}
+
+/*styling for the bulletin board page*/
+body#messages {
+  font-size: 20px;
+  background-image: url('http://img08.deviantart.net/1b23/i/2011/309/3/1/cork_board_texture_13_by_carlbert-d4f8ekd.jpg');
+  background-position: 0% 0%;
+  background-size: 100% auto;
+}
+
+#home {
+  text-align: center;
+}
+
+#home a {
+  color: black;
+  font-size: 40px;
+  border: 4px solid black;
+  text-decoration: none;
+  padding: 0.5%;
+}
+
+.post {
+  background-image: url('https://static-s.aa-cdn.net/img/gp/20600001788273/payzsoMPYwtc2wjpz-TQpraIUOTz97csRlP05UbhvYjW05W_ZgJZMZFmt8cMzQS_PiwR=w300?v=1');
+  list-style: none;
+  background-repeat: no-repeat;
+  width: 260px;
+  height: 260px;
+  display: inline-block;
+}

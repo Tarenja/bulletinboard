@@ -2,13 +2,18 @@ doctype html
 html(lang="en")
   head
     link(href='./main.css', rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet")
     title Bulletin Board
-  body
-    form(method='POST' action='/submitMessage')
-      p Message Title:
-      input#title(type='text' placeholder='message title' name='title')
+  body#index
+    div#form
+      form(method='POST' action='/submitMessage')
+        p Message Title:
+        input#title(size='50' type='text' placeholder='message title' name='title')
+        br
+        p Your Message:
+        textarea(maxlength='500' rows="20" cols="50" name="body" placeholder="Enter your message here")
+        br
+        button(type='submit' class='btn') Submit Message
       br
-      p Your Message:
-      textarea(rows="5" name="body" placeholder="Enter your message here")
       br
-      button(type='submit' class='btn') Submit Message
+      a(href='/messages') See the Bulletin Board

@@ -1,25 +1,38 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const bodyParser = require('body-parser');
 const { Client } = require('pg');
+const SQL = require('sql-template-strings');
 
-app.set('views', path.join(__dirname,'views'));
+//setting all the required pug files and static files, starting body-parser
+app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
-app.use(express.static(path.join(__dirname, 'css')));
+app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//setting up the client
+const client = new Client({
+	database: 'bulletinboard',
+	host: 'localhost',
+	user: process.env.POSTGRES_USER,
+	password: process.env.POSTGRES_PASSWORD
+});
+
+//render the homepage which is also the add messages form
 app.get ('/', (req,res) => {
 	res.render('index');
 })
 
-// app.post ('/submitMessage', (req,res) => {
-// 	client.connect();
-// 	client.query('select * from messages', (err, res) => {
-// 		console.log(err ? err.stack : res.rows);
-// 		client.end();
-// 	});
-// })
+//post request to add new messages to the database
+app.post ('/submitMessage', (req,res) => {
+	let newTitle = req.body.title;
+	let newBody = req.body.body;
+	client.connect();
+	client.query(SQL`insert into messages (title, body) values (${newTitle}, ${newBody})`, (err, result) => {
+			console.log(err ? err.stack : 'new message added to the database')
+	});
+	res.redirect('/messages');
+});
 
 app.get ('/messages', (req,res) => {
 	const client = new Client({
@@ -29,15 +42,14 @@ app.get ('/messages', (req,res) => {
 		password: process.env.POSTGRES_PASSWORD
 	});
 	client.connect();
-	client.query('select * from messages', (err, result, done) => {
-		// console.log(result.rows);
+	client.query('select * from messages', (err, result) => {
+		console.log(result.rows);
 		if (err){
 			throw err;
 		}
 		res.render('messages', {messages: result.rows});
-		client.end();
-  		.then(() => console.log('client has disconnected'))
-  		.catch(err => console.error('error during disconnection', err.stack))
+		client.end()
+			.then(() => console.log('client has disconnected'));
 	})
 });
 

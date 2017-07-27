@@ -11,8 +11,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "path": "^0.12.7",
     "pg": "^7.0.1",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.2",
+    "sql-template-strings": "^2.2.2"
   }
 }
