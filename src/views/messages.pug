@@ -6,15 +6,17 @@ html(lang="en")
     title Bulletin Board
   body#messages
     div
-      each message in messages
-        ul(class='post')
-          br
-          br
-          li= message.title
-          br
-          li= message.body
-          br
+      if messages.length != 0
+        each message in messages
+          ul(class='post')
+            br
+            br
+            li= message.title
+            br
+            li= message.body
+            br
+      else
+        h1 No posts yet!
     br
     div#home
-      h2 If your message is not here yet, refresh!
       a(href='/') Home
